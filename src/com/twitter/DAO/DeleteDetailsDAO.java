@@ -15,28 +15,28 @@ import com.twitter.model.Tweet;
 
 public class DeleteDetailsDAO {
 	
-	public boolean deleteAccountDetails(Integer accountId){
+	public boolean deleteAccountDetails(AccountDetails accountDetails){
 		
 		boolean flag = true;
 		
-		AccountDetails accountDetails = null;
 		Transaction transaction = null;
 		SessionFactory sessionFactory = null;
 		Session session = null;
 		
 		try{
-			if(accountId != null){
-				this.deleteAllTweets(accountId);
+			if(accountDetails.getAccountId() != null){
+				
 				
 				sessionFactory = new Configuration().configure().buildSessionFactory(); 
 				session = sessionFactory.openSession();
 				transaction = session.beginTransaction();
 				
-				accountDetails = (AccountDetails) session.get(AccountDetails.class, accountId);
-				accountDetails = (AccountDetails) session.get(AccountDetails.class, accountId);
+				accountDetails = (AccountDetails) session.get(AccountDetails.class, accountDetails.getAccountId());
 				
 				session.delete(accountDetails);
 				transaction.commit();
+				
+				this.deleteAllTweets(accountDetails.getAccountId());
 				
 				flag = true;
 			}else{
@@ -86,7 +86,7 @@ public class DeleteDetailsDAO {
 		return flag;
 	}
 	
-	public boolean deleteTweet(Integer tweetId, Integer accountId){
+	public boolean deleteTweet(Integer tweetId, Tweet tweet){
 		
 		boolean flag = true;
 		
@@ -94,19 +94,18 @@ public class DeleteDetailsDAO {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		AccountDetails accountDetails = null;
-		Tweet tweet = null;
-		
 		try{
-			if(accountId != null && tweetId != null){
+			if(tweet.getAccountId() != null && tweetId != null){
 				tweet = (Tweet) session.get(Tweet.class, tweetId);
 				session.delete(tweet);
 				session.getTransaction().commit();
 
 				flag = true;
-			}else if(tweetId == null && accountId != null){
-				accountDetails = (AccountDetails) session.get(AccountDetails.class, accountId);
-				
+			}else if(tweetId == null && tweet.getAccountId() != null){
+				Query query = session.createQuery("delete Tweet where accountid = :accId");
+				query.setParameter("accId", tweet.getAccountId());
+				int result = query.executeUpdate();
+				session.getTransaction().commit();
 			}
 			else{
 				flag = false;
@@ -114,10 +113,10 @@ public class DeleteDetailsDAO {
 		}catch(Exception e){
 			flag = false;
 		}
-		
-		
-		session.close();
-		sessionFactory.close();
+		finally{
+			session.close();
+			sessionFactory.close();
+		}
 		
 		return flag;
 	}

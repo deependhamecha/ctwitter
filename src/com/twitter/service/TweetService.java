@@ -4,8 +4,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -48,5 +50,21 @@ public class TweetService{
 		return addDetails.addTweet(tweet);
 	}
 	
-		
+	@PUT
+	@Path("/update/{tweetId}")
+	public Tweet updateTweetMessage(@PathParam("tweetId") Integer tweetId, Tweet tweet){
+		tweet.setTweetId(tweetId);
+		return updateDetails.updateTweetMessage(tweet);
+	}
+	
+	@DELETE
+	@Path("/delete/{tweetId}")
+	public Tweet deleteTweet(@PathParam("tweetId") Integer tweetId, Tweet tweet){
+		tweet.setTweetId(tweetId);
+		if(deleteDetails.deleteTweet(tweetId, tweet)){
+			return tweet;
+		}else{
+			return null;
+		}
+	}
 }

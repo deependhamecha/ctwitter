@@ -39,7 +39,7 @@ public class Tweet {
 	public Integer getTweetId() {
 		return tweetId;
 	}
-	private void setTweetId(Integer tweetId) {
+	public void setTweetId(Integer tweetId) {
 		this.tweetId = tweetId;
 	}
 	public Integer getAccountId() {

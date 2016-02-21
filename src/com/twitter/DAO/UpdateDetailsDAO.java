@@ -197,35 +197,29 @@ public class UpdateDetailsDAO {
 		return flag;
 	}
 	
-	public boolean updateTweetMessage(Integer tweetId, String tweetMessage){
-		
-		boolean flag = true;
-		
+	public Tweet updateTweetMessage(Tweet tweet){
+
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		Tweet tweet = null;
-		
 		try{
-			if(tweetMessage != null && tweetId != null){
-				tweet = (Tweet) session.get(Tweet.class, tweetId);
-				tweet.setTweetMessage(tweetMessage);
+			if(tweet.getTweetMessage() != null && tweet.getTweetId() != null){
 				tweet.setTweetDate(new Date());
 				session.update(tweet);
 				session.getTransaction().commit();
-				flag = true;
+				
 			}else{
-				flag = false;
+				
 			}
 		}catch(Exception e){
-			flag = false;
+			e.printStackTrace();
 		}
 		
 		session.close();
 		sessionFactory.close();
 		
-		return flag;
+		return tweet;
 	}
 	
 	

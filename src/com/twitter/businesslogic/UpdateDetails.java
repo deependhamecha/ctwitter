@@ -1,36 +1,67 @@
 package com.twitter.businesslogic;
 
 import com.twitter.DAO.UpdateDetailsDAO;
+import com.twitter.model.AccountDetails;
+import com.twitter.model.Tweet;
 
 public class UpdateDetails {
 	
 	UpdateDetailsDAO updateDetailsDAO = new UpdateDetailsDAO();
 	
-	public boolean updateName(Integer accountId, String name){
+	public AccountDetails updateAccountDetails(AccountDetails accountDetails){
+		
+		if(accountDetails.getName() != null){
+			this.updateName(accountDetails.getAccountId(), accountDetails.getName());
+		}
+		
+		if(accountDetails.getEmailAddress() != null){
+			this.updateEmailAddress(accountDetails.getAccountId(), accountDetails.getEmailAddress());
+		}
+		
+		if(accountDetails.getProfilePic() != null){
+			this.updateProfilePic(accountDetails.getAccountId(), accountDetails.getProfilePic());
+		}
+		
+		if(accountDetails.getStatus() != null){
+			this.updateStatus(accountDetails.getAccountId(), accountDetails.getStatus());
+		}
+		
+		if(accountDetails.getUsername() != null){
+			this.updateUsername(accountDetails.getAccountId(), accountDetails.getUsername());
+		}
+		
+		if(accountDetails.getPassword() != null){
+			this.updatePassword(accountDetails.getAccountId(), accountDetails.getPassword());
+		}
+		
+		return accountDetails;
+	} 
+	
+	private boolean updateName(Integer accountId, String name){
 		return  updateDetailsDAO.updateName(accountId, name);
 	}
 	
-	public boolean updateEmailAddress(Integer accountId, String emailAddress){
+	private boolean updateEmailAddress(Integer accountId, String emailAddress){
 		return updateDetailsDAO.updateEmailAddress(accountId, emailAddress);
 	}
 	
-	public boolean updateProfilePic(Integer accountId, String profilePic){
+	private boolean updateProfilePic(Integer accountId, String profilePic){
 		return updateDetailsDAO.updateProfilePic(accountId, profilePic);
 	}
 	
-	public boolean updateStatus(Integer accountId, String status){
+	private boolean updateStatus(Integer accountId, String status){
 		return updateDetailsDAO.updateStatus(accountId, status);
 	}
 	
-	public boolean updateUsername(Integer accountId, String username){
+	private boolean updateUsername(Integer accountId, String username){
 		return updateDetailsDAO.updateUsername(accountId, username);
 	}
 	
-	public boolean updatePassword(Integer accountId, String password){
+	private boolean updatePassword(Integer accountId, String password){
 		return updateDetailsDAO.updatePassword(accountId, password);
 	}
 	
-	public boolean updateTweetMessage(Integer tweetId, String tweetMessage){
-		return updateDetailsDAO.updateTweetMessage(tweetId, tweetMessage);
+	public Tweet updateTweetMessage(Tweet tweet){
+		return updateDetailsDAO.updateTweetMessage(tweet);
 	}
 }

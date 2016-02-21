@@ -49,7 +49,7 @@ public class AccountDetails {
 	public Integer getAccountId() {
 		return accountId;
 	}
-	private void setAccountId(Integer accountId) {
+	public void setAccountId(Integer accountId) {
 		this.accountId = accountId;
 	}
 	public String getName() {
