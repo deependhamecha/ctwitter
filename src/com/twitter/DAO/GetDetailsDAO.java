@@ -214,5 +214,36 @@ public class GetDetailsDAO {
 		return tweetId;
 	}
 	
+	public boolean checkCredentials(String username, String password){
+		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		
+		boolean flag = false;
+		
+		try{
+			Criteria cr = session.createCriteria(AccountDetails.class);
+			cr.add(Restrictions.eq("username", username));
+			cr.add(Restrictions.eq("password", password));
+			List<AccountDetails> results = (List<AccountDetails>) cr.list();
+			transaction.commit();
+			
+			if(results !=null){
+				flag = true;
+			}else{
+				flag = false;
+			}
+			
+		}catch(Exception e){
+			flag = false;
+			transaction.rollback();
+			e.printStackTrace();
+			
+		}finally{
+			session.close();
+			sessionFactory.close();
+		}
+		return flag;
+	}
 	
 }

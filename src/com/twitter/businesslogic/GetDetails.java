@@ -63,4 +63,8 @@ public class GetDetails {
 	public int getLastTweetId(){
 		return getDetailsDAO.getLastTweetId();
 	}
+	
+	public boolean checkCredentials(String username, String password){
+		return getDetailsDAO.checkCredentials(username, password);
+	}
 }

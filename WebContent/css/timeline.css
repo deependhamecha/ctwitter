@@ -1,0 +1,25 @@
+#userStatus{
+	font-style: italic;
+}
+
+.name{
+	font-weight:bold;
+}
+
+.new-tweet-label{
+	text-align:left;
+	padding:5px 5px 5px 5px;
+}
+
+.new-tweet{
+	text-align:left;
+	margin:5px 0;
+}
+
+.add-tweet{
+	margin:5px 0;
+}
+
+.top-align{
+	margin: auto;
+}
