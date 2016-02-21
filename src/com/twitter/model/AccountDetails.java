@@ -10,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name="AccountDetails")
+@XmlRootElement
 public class AccountDetails {
 
 	@Id
@@ -24,8 +26,22 @@ public class AccountDetails {
 	private String profilePic;
 	private String status;
 	private String username;
-	private char[] password;
+	private String password;
 	
+	public AccountDetails(){
+		
+	}
+	
+	public AccountDetails(String name, String emailAddress, String profilePic,String status, String username, String password) {
+		super();
+		this.name = name;
+		this.emailAddress = emailAddress;
+		this.profilePic = profilePic;
+		this.status = status;
+		this.username = username;
+		this.password = password;
+	}
+
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "accountId")
 	private Tweet tweet;
@@ -66,10 +82,10 @@ public class AccountDetails {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public char[] getPassword() {
+	public String getPassword() {
 		return password;
 	}
-	public void setPassword(char[] password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	public Tweet getTweet() {
@@ -84,7 +100,7 @@ public class AccountDetails {
 		return "AccountDetails [accountId=" + accountId + ", name=" + name
 				+ ", emailAddress=" + emailAddress + ", profilePic="
 				+ profilePic + ", status=" + status + ", username=" + username
-				+ ", password=" + Arrays.toString(password) + "]";
+				+ ", password=" + password + "]";
 	}
 
 	

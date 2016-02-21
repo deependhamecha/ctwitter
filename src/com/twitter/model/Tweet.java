@@ -9,22 +9,32 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name="Tweet")
+@XmlRootElement
 public class Tweet {
 
+	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer tweetId;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer accountId;
 	
 	private String tweetMessage;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date tweetDate;
+	
+	public Tweet(){}
+	
+	public Tweet(Integer accountId, Date tweetDate, String tweetMessage) {
+		super();
+		this.accountId = accountId;
+		this.tweetMessage = tweetMessage;
+		this.tweetDate = tweetDate;
+	}
 	
 	public Integer getTweetId() {
 		return tweetId;
@@ -35,13 +45,13 @@ public class Tweet {
 	public Integer getAccountId() {
 		return accountId;
 	}
-	private void setAccountId(Integer accountId) {
+	public void setAccountId(Integer accountId) {
 		this.accountId = accountId;
 	}
 	public String getTweetMessage() {
 		return tweetMessage;
 	}
-	public void setTweet(String tweetMessage) {
+	public void setTweetMessage(String tweetMessage) {
 		this.tweetMessage = tweetMessage;
 	}
 	public Date getTweetDate() {
