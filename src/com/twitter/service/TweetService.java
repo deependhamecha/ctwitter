@@ -47,7 +47,8 @@ public class TweetService{
 	@POST
 	@Path("/create")
 	public Tweet addTweet(Tweet tweet){
-		return addDetails.addTweet(tweet);
+		tweet = addDetails.addTweet(tweet);
+		return tweet;
 	}
 	
 	@PUT

@@ -20,7 +20,7 @@ public class Tweet {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer tweetId;
 	
-	private Integer accountId;
+	private String username;
 	
 	private String tweetMessage;
 	
@@ -29,9 +29,9 @@ public class Tweet {
 	
 	public Tweet(){}
 	
-	public Tweet(Integer accountId, Date tweetDate, String tweetMessage) {
+	public Tweet(String username, Date tweetDate, String tweetMessage) {
 		super();
-		this.accountId = accountId;
+		this.username = username;
 		this.tweetMessage = tweetMessage;
 		this.tweetDate = tweetDate;
 	}
@@ -42,11 +42,11 @@ public class Tweet {
 	public void setTweetId(Integer tweetId) {
 		this.tweetId = tweetId;
 	}
-	public Integer getAccountId() {
-		return accountId;
+	public String getUsername() {
+		return username;
 	}
-	public void setAccountId(Integer accountId) {
-		this.accountId = accountId;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getTweetMessage() {
 		return tweetMessage;
@@ -62,7 +62,7 @@ public class Tweet {
 	}
 	@Override
 	public String toString() {
-		return "Tweet [tweetId=" + tweetId + ", accountId=" + accountId
+		return "Tweet [tweetId=" + tweetId + ", username=" + username
 				+ ", tweet=" + tweetMessage + ", tweetDate=" + tweetDate + "]";
 	}
 	

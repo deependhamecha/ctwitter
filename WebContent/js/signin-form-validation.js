@@ -1,6 +1,6 @@
 function validateSignInForm() {
 
-    var x = document.forms["signinForm"]["emailaddr"].value;
+    var x = document.forms["signinForm"]["username"].value;
     if (x == null || x == "") {
         alert("Enter Username");
         return false;

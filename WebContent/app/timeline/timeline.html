@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US" ng-app="myApp">
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/timeline.css" />
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-cookies.js"></script>
+		<script src="app/timeline/timeline.js"></script>
+		
+		<title>My Timeline</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+  				<div class="col-sm-6 col-md-4">
+    				<div class="thumbnail">
+      					<img src="..." alt="profilePic" id="userProfilePic">
+      					<div class="caption">
+        					<h1 align="center" id="userName" ng-cloak>{{ userName }}</h1>
+        					<p align="right" id="userstatus" ng-cloak>{{ userStatus }}</p>
+        					<p id="emailAddress" align="center" ng-cloak>{{ userEmailAddress }}</p>        
+      					</div>
+    				</div>
+  				</div>
+  					
+  					<div class="col-sm-6 col-md-8">
+  						<div class="row" align="center">
+  						<div class="btn-group" role="group" aria-label="...">
+  							<button type="button" class="btn btn-primary">All Tweets</button>
+  							<button type="button" class="btn btn-default">My Tweets</button>
+						</div>
+						</div>
+						
+    					<div class="container-fluid">
+    						<div class="newtweet">
+    							<p align="left" class="new-tweet-label"><b>New Tweet</b></p>
+    							<textarea class="form-control new-tweet" rows="3"></textarea>
+    							<button type="button" class="btn btn-primary add-tweet pull-right">Tweet</button>
+    						</div>
+    						
+    						<div class="clearfix"></div>
+    						
+      						<div class="list-group alltweets">
+  								<div class="list-group-item active text-left" ng-repeat="tweet in tweets">
+    								<a class="list-group-item-heading name">{{ tweet. }}</a>
+    								<p class="list-group-item-text tweet">tweet Message</p>
+  								</div>
+							</div>
+    					</div>
+					</div>
+					
+  				</div>
+		</div>		
+	</body>
+</html>

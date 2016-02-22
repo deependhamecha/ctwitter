@@ -44,9 +44,9 @@ public class GetDetails {
 		return getDetailsDAO.getAccountDetails(accountId);
 	}
 	
-	public Integer getAccountIdOfTweetId(Integer tweetId){
+	/*public Integer getAccountIdOfTweetId(Integer tweetId){
 		return getDetailsDAO.getAccountIdOfTweetId(tweetId);
-	}
+	}*/
 	
 	public int getNoOfUserTweets(Integer accountId){
 		return getDetailsDAO.getNoOfUserTweets(accountId);
@@ -64,7 +64,7 @@ public class GetDetails {
 		return getDetailsDAO.getLastTweetId();
 	}
 	
-	public boolean checkCredentials(String username, String password){
+	public Integer checkCredentials(String username, String password){
 		return getDetailsDAO.checkCredentials(username, password);
 	}
 }

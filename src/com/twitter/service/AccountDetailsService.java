@@ -36,7 +36,8 @@ public class AccountDetailsService {
 	@POST
 	@Path("/create")
 	public AccountDetails addAccountDetails(AccountDetails accountDetails){
-		return addDetails.addAccountDetails(accountDetails);
+		accountDetails = addDetails.addAccountDetails(accountDetails);
+		return accountDetails;
 	}
 	
 	@PUT

@@ -50,9 +50,6 @@ public class DeleteDetailsDAO {
 			session.close();
 			sessionFactory.close();
 		}
-
-		
-		
 		return flag;
 	}
 	
@@ -95,15 +92,15 @@ public class DeleteDetailsDAO {
 		session.beginTransaction();
 		
 		try{
-			if(tweet.getAccountId() != null && tweetId != null){
+			if(tweet.getUsername() != null && tweetId != null){
 				tweet = (Tweet) session.get(Tweet.class, tweetId);
 				session.delete(tweet);
 				session.getTransaction().commit();
 
 				flag = true;
-			}else if(tweetId == null && tweet.getAccountId() != null){
-				Query query = session.createQuery("delete Tweet where accountid = :accId");
-				query.setParameter("accId", tweet.getAccountId());
+			}else if(tweetId == null && tweet.getUsername() != null){
+				Query query = session.createQuery("delete Tweet where username = :username");
+				query.setParameter("username", tweet.getUsername());
 				int result = query.executeUpdate();
 				session.getTransaction().commit();
 			}

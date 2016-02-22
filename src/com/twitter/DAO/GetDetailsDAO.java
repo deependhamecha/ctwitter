@@ -38,6 +38,32 @@ public class GetDetailsDAO {
 		return tweetList;
 	}
 	
+	public boolean isUsernameExist(AccountDetails accountDetails){
+		boolean flag = false;
+		
+		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+			try{
+				Criteria cr = session.createCriteria(AccountDetails.class);
+				cr.add(Restrictions.eq("username", accountDetails.getUsername()));
+				List<AccountDetails> results = (List<AccountDetails>) cr.list();
+				
+				if(results.size() > 0){
+					flag = true;
+				}else{
+					flag = false;
+				}
+			}catch(Exception e){
+				flag = false;
+				e.printStackTrace();
+			}finally{
+				session.close();
+				sessionFactory.close();
+			}
+		return flag;
+	}
 	
 	public List<Tweet> getUserTweets(Integer accountId){
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
@@ -97,22 +123,22 @@ public class GetDetailsDAO {
 		return accountDetails;
 	}
 	
-	public Integer getAccountIdOfTweetId(Integer tweetId){
+/*	public Integer getAccountIdOfTweetId(Integer tweetId){
 		
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
 		Tweet tweet = null;
-		Integer accountId = null;
+		String username = null;
 		
 		try{
 			if(tweetId != null && session.get(Tweet.class, tweetId) != null){
 				tweet = (Tweet) session.get(Tweet.class,tweetId);
 				session.getTransaction().commit();
 				
-				if(tweet.getAccountId() != null){
-					accountId = tweet.getAccountId();
+				if(tweet.getUsername() != null){
+					username = tweet.getUsername();
 				}
 			}
 		}catch(Exception e){
@@ -124,7 +150,7 @@ public class GetDetailsDAO {
 		
 		return accountId;
 	}
-	
+	*/
 	public int getNoOfUserTweets(Integer accountId){
 	
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
@@ -214,12 +240,10 @@ public class GetDetailsDAO {
 		return tweetId;
 	}
 	
-	public boolean checkCredentials(String username, String password){
+	public Integer checkCredentials(String username, String password){
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
-		
-		boolean flag = false;
 		
 		try{
 			Criteria cr = session.createCriteria(AccountDetails.class);
@@ -228,22 +252,23 @@ public class GetDetailsDAO {
 			List<AccountDetails> results = (List<AccountDetails>) cr.list();
 			transaction.commit();
 			
-			if(results !=null){
-				flag = true;
+			if(results.size() > 0){
+				
+				return results.get(0).getAccountId();
+				
 			}else{
-				flag = false;
+				return -1;
 			}
 			
 		}catch(Exception e){
-			flag = false;
 			transaction.rollback();
 			e.printStackTrace();
-			
+			return -1;
 		}finally{
 			session.close();
 			sessionFactory.close();
 		}
-		return flag;
+		
 	}
 	
 }

@@ -20,7 +20,7 @@ public class DBConnection {
 		### Adding AccountDetails & Tweet Testing ###
 		#############################################*/
 		  
-		AddDetailsDAO add = new AddDetailsDAO();
+	/*	AddDetailsDAO add = new AddDetailsDAO();*/
 		/*AccountDetails ad = add.addAccountDetails(accountDetails);*/
 		
 	/*	System.out.println(" : "+accountDetails.getAccountId());
@@ -46,8 +46,8 @@ public class DBConnection {
 		#############################################
 		*/
 		
-	/*	GetDetailsDAO get = new GetDetailsDAO();
-		System.out.println(get.getNoOfUserTweets(4));
+		/*GetDetailsDAO get = new GetDetailsDAO();*/
+	/*	System.out.println(get.getNoOfUserTweets(4));
 		System.out.println(get.getTotalNoOfAccountDetails());
 		System.out.println(get.getTotalNoOfTweets());
 
@@ -70,12 +70,6 @@ public class DBConnection {
 		/*System.out.println(deleteDaoDetailsDAO.deleteAllTweets(1));*/
 		/*System.out.println(deleteDaoDetailsDAO.deleteAccountDetails(1));*/
 		
-		
-		
-		
-			
-		
-		
-
+		/*System.out.println(get.checkCredentials("naresh", "abc"));*/
 	}	
 }

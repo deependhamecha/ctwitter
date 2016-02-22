@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,33 +35,7 @@ public class CheckLogin extends HttpServlet {
 	 */
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	HttpSession session = request.getSession(false);
-    	
-    	if(session == null){
-    		String username = (String) request.getParameter("username");
-    		String password = (String) request.getParameter("password");
-    		
-    		if(username != null && password != null){
-    			if(getDetails.checkCredentials(username, password)){
-    				session = request.getSession(true);
-    				
-    				RequestDispatcher requestDispatcher = request.getRequestDispatcher("timeline.html");
-    				requestDispatcher.forward(request, response);
-    			}else{
-    				RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.html");
-    	    		requestDispatcher.forward(request, response);
-    			}
-    		}else{
-    			RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.html");
-    			requestDispatcher.forward(request, response);
-    		}
-    	}else if(!session.isNew()){
-    		RequestDispatcher requestDispatcher = request.getRequestDispatcher("timeline.html");
-    		requestDispatcher.forward(request, response);
-    	}else if(session.isNew()){
-    		RequestDispatcher requestDispatcher = request.getRequestDispatcher("timeline.html");
-    		requestDispatcher.forward(request, response);
-    	}
+    	this.doService(request,response);
 	}
 
 	/**
@@ -68,23 +43,58 @@ public class CheckLogin extends HttpServlet {
 	 */
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		this.doService(request,response);
 	}
 
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		super.doDelete(req, resp);
+		this.doService(req,resp);
 	}
 
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		super.doPut(req, resp);
+		
+		this.doService(req,resp);
 	}
 	
-	
-
+	protected void doService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+  	HttpSession session = request.getSession(false);
+  	System.out.println(session);
+    	
+    	if(session == null){
+    		String username = (String) request.getParameter("username");
+    		String password = (String) request.getParameter("password");
+    		
+    		System.out.println(username);
+    		System.out.println(password);
+    		Integer accountId = 0;
+    		
+    		if(username != null && password != null){
+    			if((accountId = getDetails.checkCredentials(username, password)) > 0){
+    				session = request.getSession(true);
+    				
+    				Cookie aid = new Cookie("aid",accountId.toString()); 
+    				aid.setMaxAge(60*15);
+    				response.addCookie(aid);
+    				
+    				RequestDispatcher requestDispatcher = request.getRequestDispatcher("app/timeline/timeline.html");
+    				requestDispatcher.forward(request, response);
+    			}else{
+    				RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.html");
+    	    		requestDispatcher.forward(request, response);
+    			}
+    		}else{
+    			response.sendRedirect("/index.html");
+    		}
+    	}else if(session != null){
+    		RequestDispatcher requestDispatcher = request.getRequestDispatcher("timeline.html");
+    		requestDispatcher.forward(request, response);
+    	}
+	}
 }

@@ -1,37 +1,37 @@
 function validateSignUpForm() {
-    var x = document.forms["signupForm"]["firstname"].value;
+    var x = document.forms["signupForm"]["name"].value;
     if (x == null || x == "") {
         alert("Name must be filled out");
         return false;
     }
 
-    var x = document.forms["signupForm"]["lastname"].value;
+    var x = document.forms["signupForm"]["status"].value;
     if (x == null || x == "") {
-        alert("Name must be filled out");
+        alert("Status must be filled out");
         return false;
     }
-
-    var x = document.forms["signupForm"]["designation"].value;
+    
+    var x = document.forms["signupForm"]["username"].value;
     if (x == null || x == "") {
-        alert("Name must be filled out");
+        alert("Username must be filled out");
         return false;
     }
 
     var x = document.forms["signupForm"]["emailaddr"].value;
     if (x == null || x == "") {
-        alert("Name must be filled out");
+        alert("Email Address must be filled out");
         return false;
     }
 
     var x = document.forms["signupForm"]["password"].value;
     if (x == null || x == "") {
-        alert("Name must be filled out");
+        alert("Password must be filled out");
         return false;
     }
 
     var x = document.forms["signupForm"]["cpassword"].value;
     if (x == null || x == "") {
-        alert("Name must be filled out");
+        alert("Confirm Password must be filled out");
         return false;
     }
 
@@ -42,3 +42,48 @@ function validateSignUpForm() {
         return false;
     }
 }
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#profilepic')
+                .attr('src', e.target.result)
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+} 
+
+var createData = function(){
+    $("#signupForm").submit(function(evt){
+        evt.preventDefault();
+        var url = 'http://localhost:8080/ctwitter/webapi/accountdetails/create';
+        var postData = {
+			"emailAddress" : $("#emailaddr").val(),
+			"name" : $("#name").val(),
+			"password" : $("#password").val(),
+			"profilePic" : "myProfilePic",
+			"status" : $("#status").val(),
+			"tweet" : null,
+			"username" : $("#username").val()
+		};
+        console.log(postData);
+
+        $.ajax = function(url, postData) {
+            return jQuery.ajax({
+            headers: { 
+                'Accept': 'application/json',
+                'Content-Type': 'application/json' 
+            },
+            'type': 'POST',
+            'url': url,
+            'data': JSON.stringify(data),
+            'dataType': 'json',
+            'success':function{
+                alert('success');
+            }
+            });
+        };
+    });
+};

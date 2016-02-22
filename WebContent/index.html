@@ -3,23 +3,23 @@
 <head>
 	<title>Twitter App</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
+	<meta charset="utf-8"/>
+	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/custom-style.css" >
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.min.js"></script>
-	<script src="app/app-module.js"></script>
-	<script src="app/app-route.js"></script>
+	<script src="libs/angular.min.js"></script>
+	<script src="libs/angular-route.min.js"></script>
+	<script src="app/app.js"></script>
+	<script src="js/signin-form-validation.js"></script>
 	<script src="js/signup-form-validations.js"></script>
-	<script src="js/signin-form-validations.js"></script>
 	
 </head>
-<body class="container-fluid">
+<body class="container-fluid" ng-controller="mainController">
 	<!-- Page Header -->
-	<div class="page-header">
-  		<h1>Twitter</h1>
+	
+	<div class="page-header" align="center">
+  		<h1>A Twitter Clone Application <small>By Deepen Dhamecha</small></h1>
 	</div>
 
 	<!-- Nav Bar -->
@@ -33,7 +33,6 @@
 	</div>
 	
 	<div ng-view></div>    
-	
-	
+
 </body>
 </html>

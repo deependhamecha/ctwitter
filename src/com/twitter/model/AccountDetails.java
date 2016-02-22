@@ -1,13 +1,16 @@
 package com.twitter.model;
 
 import java.util.Arrays;
+import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -25,6 +28,8 @@ public class AccountDetails {
 	private String emailAddress;
 	private String profilePic;
 	private String status;
+	
+	@Column(unique = true)
 	private String username;
 	private String password;
 	
@@ -42,9 +47,9 @@ public class AccountDetails {
 		this.password = password;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "accountId")
-	private Tweet tweet;
+	private List<Tweet> tweet;
 	
 	public Integer getAccountId() {
 		return accountId;
@@ -88,10 +93,10 @@ public class AccountDetails {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Tweet getTweet() {
+	public List<Tweet> getTweet() {
 		return tweet;
 	}
-	public void setTweet(Tweet tweet) {
+	public void setTweet(List<Tweet> tweet) {
 		this.tweet = tweet;
 	}
 	
