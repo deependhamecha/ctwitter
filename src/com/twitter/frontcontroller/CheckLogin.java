@@ -12,7 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.twitter.DAO.UpdateDetailsDAO;
+import com.twitter.businesslogic.AddDetails;
+import com.twitter.businesslogic.DeleteDetails;
 import com.twitter.businesslogic.GetDetails;
+import com.twitter.businesslogic.UpdateDetails;
+import com.twitter.model.AccountDetails;
+import com.twitter.model.Tweet;
 
 /**
  * Servlet implementation class CheckLogin
@@ -21,13 +27,13 @@ import com.twitter.businesslogic.GetDetails;
 public class CheckLogin extends HttpServlet {
        
 	GetDetails getDetails = new GetDetails();
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	AddDetails addDetails = new AddDetails();
+	UpdateDetails updateDetails = new UpdateDetails();
+	DeleteDetails deleteDetails = new DeleteDetails();
+	
 	
     public CheckLogin() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -64,37 +70,46 @@ public class CheckLogin extends HttpServlet {
 	
 	protected void doService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-  	HttpSession session = request.getSession(false);
-  	System.out.println(session);
-    	
-    	if(session == null){
-    		String username = (String) request.getParameter("username");
-    		String password = (String) request.getParameter("password");
+    	if(request.isRequestedSessionIdValid()){
+    		String username = (String) request.getParameter("loginusername");
+    		String password = (String) request.getParameter("loginpassword");
     		
     		System.out.println(username);
     		System.out.println(password);
+    		
     		Integer accountId = 0;
     		
     		if(username != null && password != null){
     			if((accountId = getDetails.checkCredentials(username, password)) > 0){
-    				session = request.getSession(true);
+    				HttpSession session = request.getSession(true);
     				
-    				Cookie aid = new Cookie("aid",accountId.toString()); 
-    				aid.setMaxAge(60*15);
-    				response.addCookie(aid);
+    				System.out.println("session : "+session);
+    				session.setAttribute("allTweets", getDetails.getAllTweets());
+    				session.setAttribute("myAccountDetails", getDetails.getAccountDetails(accountId));
     				
-    				RequestDispatcher requestDispatcher = request.getRequestDispatcher("app/timeline/timeline.html");
+    				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/timeline.jsp");
     				requestDispatcher.forward(request, response);
     			}else{
-    				RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.html");
-    	    		requestDispatcher.forward(request, response);
+    				request.setAttribute("message", "<div role=\"alert\" class=\"alert alert-success alert-dismissible\">"
+    						+" <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>"
+    						+ "Username or Password is incorrect!</div>");
+    				RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
+    				requestDispatcher.forward(request, response);
+    				}
+    		}else{
+    			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
+				requestDispatcher.forward(request, response);
     			}
     		}else{
-    			response.sendRedirect("/index.html");
-    		}
-    	}else if(session != null){
-    		RequestDispatcher requestDispatcher = request.getRequestDispatcher("timeline.html");
-    		requestDispatcher.forward(request, response);
+    		HttpSession session = request.getSession(false);
+    		
+    		System.out.println(session==null);
+    		/*session.setAttribute("allTweets", getDetails.getAllTweets());
+    		 * 
+			session.setAttribute("myAccountDetails", getDetails.getAccountDetails(accountId));*/
+			
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
+			requestDispatcher.forward(request, response);
     	}
 	}
 }

@@ -1,5 +1,6 @@
 package com.twitter.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name="Tweet")
 @XmlRootElement
-public class Tweet {
+public class Tweet implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

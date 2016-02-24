@@ -18,8 +18,8 @@ public class DeleteDetails {
 	}
 
 	
-	public boolean deleteTweet(Integer tweetId, Tweet tweet) {
-		return deleteDetailsDAO.deleteTweet(tweetId, tweet);
+	public boolean deleteTweet(Tweet tweet) {
+		return deleteDetailsDAO.deleteTweet(tweet);
 	}
 	
 	

@@ -83,26 +83,21 @@ public class DeleteDetailsDAO {
 		return flag;
 	}
 	
-	public boolean deleteTweet(Integer tweetId, Tweet tweet){
+	public boolean deleteTweet(Tweet tweet){
 		
-		boolean flag = true;
+		boolean flag = false;
 		
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
 		try{
-			if(tweet.getUsername() != null && tweetId != null){
-				tweet = (Tweet) session.get(Tweet.class, tweetId);
-				session.delete(tweet);
-				session.getTransaction().commit();
-
-				flag = true;
-			}else if(tweetId == null && tweet.getUsername() != null){
-				Query query = session.createQuery("delete Tweet where username = :username");
-				query.setParameter("username", tweet.getUsername());
+			if(tweet.getTweetId() != null){
+				Query query = session.createQuery("delete Tweet where tweetId = :tweetId");
+				query.setParameter("tweetId", tweet.getTweetId());
 				int result = query.executeUpdate();
 				session.getTransaction().commit();
+				flag = true;
 			}
 			else{
 				flag = false;
@@ -114,7 +109,6 @@ public class DeleteDetailsDAO {
 			session.close();
 			sessionFactory.close();
 		}
-		
 		return flag;
 	}
 	

@@ -4,6 +4,7 @@ function validateSignUpForm() {
         alert("Name must be filled out");
         return false;
     }
+    
 
     var x = document.forms["signupForm"]["status"].value;
     if (x == null || x == "") {
@@ -20,6 +21,12 @@ function validateSignUpForm() {
     var x = document.forms["signupForm"]["emailaddr"].value;
     if (x == null || x == "") {
         alert("Email Address must be filled out");
+        return false;
+    }
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var re1 = re.test(x);
+    if(!re1){
+    	alert("Not a Valid Email Address");
         return false;
     }
 
@@ -43,7 +50,7 @@ function validateSignUpForm() {
     }
 }
 
-function readURL(input) {
+/*function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
@@ -53,9 +60,11 @@ function readURL(input) {
         };
         reader.readAsDataURL(input.files[0]);
     }
-} 
+}*/
 
-var createData = function(){
+
+
+/*var createData = function(){
     $("#signupForm").submit(function(evt){
         evt.preventDefault();
         var url = 'http://localhost:8080/ctwitter/webapi/accountdetails/create';
@@ -86,4 +95,4 @@ var createData = function(){
             });
         };
     });
-};
+};*/

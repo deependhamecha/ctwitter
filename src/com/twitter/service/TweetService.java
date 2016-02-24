@@ -47,6 +47,8 @@ public class TweetService{
 	@POST
 	@Path("/create")
 	public Tweet addTweet(Tweet tweet){
+		System.out.println(tweet.getTweetMessage());
+		System.out.println(tweet.getUsername());
 		tweet = addDetails.addTweet(tweet);
 		return tweet;
 	}
@@ -61,8 +63,9 @@ public class TweetService{
 	@DELETE
 	@Path("/delete/{tweetId}")
 	public Tweet deleteTweet(@PathParam("tweetId") Integer tweetId, Tweet tweet){
+		tweet = new Tweet();
 		tweet.setTweetId(tweetId);
-		if(deleteDetails.deleteTweet(tweetId, tweet)){
+		if(deleteDetails.deleteTweet(tweet)){
 			return tweet;
 		}else{
 			return null;
