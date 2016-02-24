@@ -16,7 +16,7 @@
 <!-- 				<div class="form-group">
 					<label class="col-sm-4 control-label">Upload Profile Picture</label>
 					<div class="col-sm-8">
-						<input name="imageupload" ng-model="imageupload" class="form-control"  id="imageupload" type="file" onchange="readURL(this)" />
+						<input name="imageupload" class="form-control"  id="imageupload" type="file" onchange="readURL(this)" />
 					</div>
 				</div> -->
 
@@ -51,7 +51,7 @@
 				<div class="form-group">
 					<label class="col-sm-4 control-label">Status</label>
 					<div class="col-sm-8">
-						<textarea name="status" type="text" class="form-control" id="status" placeholder="Enter Status" style="resize: none;"/>
+						<textarea name="status" type="text" class="form-control" id="status" placeholder="Enter Status" style="resize: none;" />
 					</div>
 				</div>
 				
@@ -79,7 +79,7 @@
 						<tr style="height:100px;text-align:center;">
 							<td>
 								<label class="control-label">
-									<h2 align="left"></h2>
+									<h2 align="left" ng-cloak>{{ name }}</h2>
 								</label>
 							</td>
 						</tr>
@@ -111,7 +111,7 @@
 						</tr>
 					</tbody>
 				</table>
-			</div>  --%>
+			</div>   --%>
 		</div>
 	</div>
  

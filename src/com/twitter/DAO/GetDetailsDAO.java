@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.twitter.model.AccountDetails;
@@ -27,6 +28,7 @@ public class GetDetailsDAO {
 			
 			Criteria cr = session.createCriteria(Tweet.class);
 			cr.add(Restrictions.lt("tweetId", (this.getLastTweetId()+1)));
+			cr.addOrder(Order.desc("tweetId"));
 			tweetList = cr.list();
 			session.getTransaction().commit();
 		}catch(Exception e){

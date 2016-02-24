@@ -104,9 +104,7 @@ public class CheckLogin extends HttpServlet {
     		HttpSession session = request.getSession(false);
     		
     		System.out.println(session==null);
-    		/*session.setAttribute("allTweets", getDetails.getAllTweets());
-    		 * 
-			session.setAttribute("myAccountDetails", getDetails.getAccountDetails(accountId));*/
+    		
 			
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
 			requestDispatcher.forward(request, response);

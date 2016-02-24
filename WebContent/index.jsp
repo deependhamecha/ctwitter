@@ -92,22 +92,36 @@
 	$(document).ready(function(){
 		$("#signupbtn").click(
 		function(){
-			$("#view").load('app/signup/signupView.jsp');
+			$("#view").slideUp('slow');
+			$("#view").load('app/signup/signupView.jsp').hide();
+			$("#view").slideDown('slow');
 		});
 	});
 	
 	$(document).ready(function(){
 		$("#signinbtn").click(
 		function(){
-			$("#view").load('app/signin/signinView.jsp');
+			$("#view").slideUp('slow');
+			$("#view").load('app/signin/signinView.jsp').hide();
+			$("#view").slideDown('slow');
 		});
 	});
 	
+	function loadSignUpPage(){
+		$("#view").slideUp('slow');
+		$("#view").load('app/signup/signupView.jsp').hide();
+		$("#view").slideDown('slow');
+	}
 
+	window.setTimeout(function() {
+		  $("#successMessage").fadeTo(500, 0).slideUp(500, function(){
+		    $(this).remove(); 
+		  });
+		}, 3000);
 
 	</script>
 </head>
-<body class="container">
+<body class="container" onload="loadSignUpPage();">
 	<!-- Page Header -->
 	
 	<div class="page-header" align="center">
