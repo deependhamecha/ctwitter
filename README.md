@@ -31,4 +31,9 @@ First of all welcome to Ctwitter application, which is nothing but a twitter clo
 
 * [Add Apache Tomcat Server to Eclipse but remember to Select Apache Tomcat 8.0](https://www.eclipse.org/webtools/jst/components/ws/1.0M9/tutorials/InstallTomcat.html)
 
-* Press 'Ctrl'+'Shift'+'R', type 'hibernate.cfg.xml' and open it. Go to line number 27.
+* Extract the 'allDependentLibraries.zip' to 'Cloned Repository Folder > WebContent > WEB-INF > lib ' folder.
+
+* Now, we are good to go with running our application by right Clicking on the project > Run As > Run on Server > Select Apache Tomcat.(Note : When you run the application first time and create an Account, there is one last thing to do.
+
+Go to [http://localhost:8080/ctwitter](http://localhost:8080/ctwitter)
+Press 'Ctrl'+'Shift'+'R', type 'hibernate.cfg.xml' and open it. Go to line number 27.
