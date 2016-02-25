@@ -22,6 +22,12 @@ First of all welcome to Ctwitter application, which is nothing but a twitter clo
 
 * Install JDK 8.
 
-* Install/Extract Apache Tomcat 8 (Note:By Default its configured on 8080 and we need that port only for our application and if its not configured on 8080 then easiest way is to do it via Eclipse IDE By going to Window -> Show View -> Servers -> Double on configured Server, under Ports -> HTTP/1.1 -> Change it to 8080)
+* Install/Extract Apache Tomcat 8 
+(Note:By Default its configured on 8080 and we need that port only for our application and if its not configured on 8080 then easiest way is to do it via Eclipse IDE By going to Window -> Show View -> Servers -> Double on configured Server, under Ports -> HTTP/1.1 -> Change it to 8080).If you didn't understand keep reading then below steps will redirect you here.
 
-* Extract Eclipse and Start
+* Extract Eclipse.
+
+* Clone the repository & open it in one of the Eclipse Workspace.
+
+* 
+* Press 'Ctrl'+'Shift'+'R', type 'hibernate.cfg.xml' and open it. Go to line number 27.
