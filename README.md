@@ -11,7 +11,7 @@ First of all welcome to Ctwitter application, which is nothing but a twitter clo
 
 ### Working of this application ###
 
-Summary of set up
+![ArchofCtwitter.jpg](https://bitbucket.org/repo/8GnbyA/images/2025643578-ArchofCtwitter.jpg)
 
 ### Contribution guidelines ###
 
