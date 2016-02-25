@@ -13,6 +13,9 @@ First of all welcome to Ctwitter application, which is nothing but a twitter clo
 
 ![ArchofCtwitter.jpg](https://bitbucket.org/repo/8GnbyA/images/2025643578-ArchofCtwitter.jpg)
 
+[Full View](https://bitbucket.org/repo/8GnbyA/images/2025643578-ArchofCtwitter.jpg)
+
+
 ### Contribution guidelines ###
 
 * Writing tests
