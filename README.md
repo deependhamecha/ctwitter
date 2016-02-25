@@ -33,7 +33,7 @@ First of all welcome to Ctwitter application, which is nothing but a twitter clo
 
 * Extract the 'allDependentLibraries.zip' to 'Cloned Repository Folder > WebContent > WEB-INF > lib ' folder.
 
-* Now, we are good to go with running our application by right Clicking on the project > Run As > Run on Server > Select Apache Tomcat.(Note : When you run the application first time and create an Account, there is one last thing to do.
+* Now, we are good to go with running our application by right Clicking on the project > Run As > Run on Server > Select Apache Tomcat.
 
-Go to [http://localhost:8080/ctwitter](http://localhost:8080/ctwitter)
-Press 'Ctrl'+'Shift'+'R', type 'hibernate.cfg.xml' and open it. Go to line number 27.
+* Go to [http://localhost:8080/ctwitter](http://localhost:8080/ctwitter)
+and SignUp before Signing in. After you create first account do not login, Go to Eclipse IDE and Press 'Ctrl'+'Shift'+'R', type 'hibernate.cfg.xml' and open it. Go to line number 27 [<property name="hbm2ddl.auto">create</property>]() and comment it by Pressing 'Ctrl' + 'Shift' + '/' 
