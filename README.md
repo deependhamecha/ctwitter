@@ -8,7 +8,6 @@ First of all, Welcome to Ctwitter application, which is a Twitter clone applicat
 * [JDK 1.8 and above](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 * [An Eclipse IDE for reviewing code](https://eclipse.org/downloads/)
 * [Apache Tomcat 8](https://tomcat.apache.org/download-80.cgi)
-* [Library Dependencies]()
 
 ### Working of this application ###
 
@@ -31,8 +30,6 @@ First of all, Welcome to Ctwitter application, which is a Twitter clone applicat
 * Clone the repository & open it in one of the Eclipse Workspace.
 
 * [Add Apache Tomcat Server to Eclipse but remember to Select Apache Tomcat 8.0](https://www.eclipse.org/webtools/jst/components/ws/1.0M9/tutorials/InstallTomcat.html)
-
-* Extract the '*allDependentLibraries.zip*' to **Cloned Repository Folder** > **WebContent** > **WEB-INF** > **lib** folder.
 
 * Now, we are good to go with running our application by right Clicking on the **project(ctwitter)** > **Run As** > **Run on Server** > Select **Apache Tomcat**.
 
