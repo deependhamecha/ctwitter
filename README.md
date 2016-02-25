@@ -18,5 +18,10 @@ First of all welcome to Ctwitter application, which is nothing but a twitter clo
 ### If all above files are available then lets started. ###
 
 * Install XAMPP
- Then start 'Apache' and 'MySQL' (Note: Your MySQl port should be configured at 3306). Open your favourite browser and type 'localhost/phpmyadmin' (If you have configured before then login with root privileges). Then Select 'Databases' and Create Database with name 'twitterdb'
-* Other guidelines
+ Then start 'Apache' and 'MySQL' (Note: Your MySQl port should be configured at 3306). Open your favourite browser and type 'localhost/phpmyadmin' (If you have configured before then login with root privileges). Then Select 'Databases' and Create Database with name 'twitterdb'.
+
+* Install JDK 8.
+
+* Install/Extract Apache Tomcat 8 (Note:By Default its configured on 8080 and we need that port only for our application and if its not configured on 8080 then easiest way is to do it via Eclipse IDE By going to Window -> Show View -> Servers -> Double on configured Server, under Ports -> HTTP/1.1 -> Change it to 8080)
+
+* Extract Eclipse and Start
