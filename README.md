@@ -35,3 +35,5 @@ First of all, Welcome to Ctwitter application, which is a Twitter clone applicat
 
 * Go to [http://localhost:8080/ctwitter](http://localhost:8080/ctwitter)
 and SignUp before Signing in. After you create first account do not login, Go to Eclipse IDE and Press 'Ctrl'+'Shift'+'R', type 'hibernate.cfg.xml' and open it. Go to line number 27 **<property name="hbm2ddl.auto">create</property>** and comment this by pressing 'Ctrl' + 'Shift' + '/'. Then Right click on the project and Select **Run as** > **Run on Server**.
+
+* Now We are good to go to use the application
