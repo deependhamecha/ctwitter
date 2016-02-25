@@ -15,14 +15,8 @@ First of all welcome to Ctwitter application, which is nothing but a twitter clo
 
 [Full View](https://bitbucket.org/repo/8GnbyA/images/2025643578-ArchofCtwitter.jpg)
 
+### If all above files are available then lets started. ###
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
+* Install XAMPP
+ Then start 'Apache' and 'MySQL' (Note: Your MySQl port should be configured at 3306). Open your favourite browser and type 'localhost/phpmyadmin' (If you have configured before then login with root privileges). Then Select 'Databases' and Create Database with name 'twitterdb'
 * Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
