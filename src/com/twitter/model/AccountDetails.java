@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name="AccountDetails")
 @XmlRootElement
-public class AccountDetails implements Serializable {
+public class AccountDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,7 +35,6 @@ public class AccountDetails implements Serializable {
 	private String password;
 	
 	public AccountDetails(){
-		
 	}
 	
 	public AccountDetails(String name, String emailAddress, String profilePic,String status, String username, String password) {
@@ -48,9 +47,8 @@ public class AccountDetails implements Serializable {
 		this.password = password;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "accountId")
-	private List<Tweet> tweet;
+	@OneToMany(mappedBy="username")
+	private transient List<Tweet> tweet;
 	
 	public Integer getAccountId() {
 		return accountId;

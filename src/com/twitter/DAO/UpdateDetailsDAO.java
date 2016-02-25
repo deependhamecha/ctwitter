@@ -9,8 +9,17 @@ import org.hibernate.cfg.Configuration;
 import com.twitter.model.AccountDetails;
 import com.twitter.model.Tweet;
 
+/** This class Updates Details of AccountDetails and Tweet
+ * @author Deepen Dhamecha
+ *
+ */
 public class UpdateDetailsDAO {
 
+	/** Updates Name of User using accountId
+	 * @param accountId Unique accountId of a user
+	 * @param name Name of a user
+	 * @return Returns true if successful and false if not.
+	 */
 	public boolean updateName(Integer accountId, String name){
 		
 		boolean flag = true;
@@ -42,6 +51,11 @@ public class UpdateDetailsDAO {
 		return flag;
 	}
 	
+	/** Updates Email Address of User using accountId
+	 * @param accountId Unique accountId of a user
+	 * @param emailAddress Email Address of a user
+	 * @return Returns true if successful and false if not.
+	 */
 	public boolean updateEmailAddress(Integer accountId, String emailAddress){
 		
 		boolean flag = true;
@@ -73,6 +87,11 @@ public class UpdateDetailsDAO {
 		return flag;
 	}
 	
+	/** Updates Profile Pic URL of User using accountId
+	 * @param accountId Unique accountId of a user
+	 * @param profilePic Profile Pic of a user
+	 * @return Returns true if successful and false if not.
+	 */
 	public boolean updateProfilePic(Integer accountId, String profilePic){
 		
 		boolean flag = true;
@@ -104,6 +123,11 @@ public class UpdateDetailsDAO {
 		return flag;
 	}
 	
+	/** Updates Status of User using accountId
+	 * @param accountId Unique accountId of a user
+	 * @param status Status of a user
+	 * @return Returns true if successful and false if not.
+	 */
 	public boolean updateStatus(Integer accountId, String status){
 		
 		boolean flag = true;
@@ -135,6 +159,11 @@ public class UpdateDetailsDAO {
 		return flag;
 	}
 	
+	/** Updates Username of User using accountId
+	 * @param accountId Unique accountId of a user
+	 * @param username Username of a user
+	 * @return Returns true if successful and false if not.
+	 */
 	public boolean updateUsername(Integer accountId, String username){
 		
 		boolean flag = true;
@@ -166,6 +195,11 @@ public class UpdateDetailsDAO {
 		return flag;
 	}
 	
+	/** Updates Password of User using accountId
+	 * @param accountId Unique accountId of a user
+	 * @param password Password of a user
+	 * @return Returns true if successful and false if not.
+	 */
 	public boolean updatePassword(Integer accountId, String password){
 		
 		boolean flag = true;
@@ -197,6 +231,11 @@ public class UpdateDetailsDAO {
 		return flag;
 	}
 	
+	/** Updates Tweet of User using tweetId
+	 * @param tweettId Unique accountId of a user
+	 * @param tweetMessage tweetMessage of a user by passing Tweet object.
+	 * @return Returns true if successful and false if not.
+	 */
 	public Tweet updateTweetMessage(Tweet tweet){
 
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
@@ -221,6 +260,4 @@ public class UpdateDetailsDAO {
 		
 		return tweet;
 	}
-	
-	
 }

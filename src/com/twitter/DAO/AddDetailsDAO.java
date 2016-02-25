@@ -13,8 +13,17 @@ import org.hibernate.Transaction;
 import com.twitter.model.AccountDetails;
 import com.twitter.model.Tweet;
 
+/**
+ * @author Deepen Dhamecha
+ *
+ */
 public class AddDetailsDAO {
 
+	
+	/** This Method Adds AccountDetails to database 
+	 * @param accountDetails AccountDetails Object 
+	 * @return AccountDetails Returns AccountDetails Object on successful creation
+	 */
 	public AccountDetails addAccountDetails(AccountDetails accountDetails){
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
@@ -36,6 +45,11 @@ public class AddDetailsDAO {
 		return accountDetails;
 	}
 	
+	
+	/** This Method Adds Tweet to database 
+	 * @param tweet Adds Tweet Object 
+	 * @return Tweet Returns Tweet Object on successful creation
+	 */
 	public Tweet addTweet(Tweet tweet){
 		
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 

@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
 import com.twitter.DAO.UpdateDetailsDAO;
 import com.twitter.businesslogic.AddDetails;
 import com.twitter.businesslogic.DeleteDetails;
@@ -70,12 +71,13 @@ public class CheckLogin extends HttpServlet {
 	
 	protected void doService(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		
     	if(request.isRequestedSessionIdValid()){
     		String username = (String) request.getParameter("loginusername");
     		String password = (String) request.getParameter("loginpassword");
     		
-    		System.out.println(username);
-    		System.out.println(password);
+    		
     		
     		Integer accountId = 0;
     		
@@ -83,7 +85,7 @@ public class CheckLogin extends HttpServlet {
     			if((accountId = getDetails.checkCredentials(username, password)) > 0){
     				HttpSession session = request.getSession(true);
     				
-    				System.out.println("session : "+session);
+    				
     				session.setAttribute("allTweets", getDetails.getAllTweets());
     				session.setAttribute("myAccountDetails", getDetails.getAccountDetails(accountId));
     				
@@ -103,7 +105,7 @@ public class CheckLogin extends HttpServlet {
     		}else{
     		HttpSession session = request.getSession(false);
     		
-    		System.out.println(session==null);
+    		
     		
 			
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");

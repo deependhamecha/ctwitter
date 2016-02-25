@@ -4,6 +4,7 @@
 
 		<!-- Sign Up -->
 		<div class="" style="margin-top: 30px">
+			<div class="col-md-2"></div>
 			<div class="col-md-6">
 			<form name="signupForm" class="form-horizontal" method="post" action="signupcontroller.do" id="signupForm">
 				<div class="form-group">
@@ -57,12 +58,13 @@
 				
 				<div class="form-group">
 					<div class="col-sm-offset-4 col-sm-10">
-						<input type="submit" class="btn btn-success submit" value="Submit" /> <!-- return validateSignUpForm(); -->
+						<input type="submit" class="btn btn-success submit" value="Submit" id="submit" /> <!-- return validateSignUpForm(); -->
 					</div>
 				</div>
 			</form>
-			</div>
 			
+			</div>
+			<div class="col-md-2"></div>
 			<%-- <div class="col-md-5 col-md-offset-1">
 				<table class="table table-hover" border="0" cellspacing="0" cellpadding="0" width="100%">
 					<thead>
@@ -114,4 +116,4 @@
 			</div>   --%>
 		</div>
 	</div>
- 
+<hr/>

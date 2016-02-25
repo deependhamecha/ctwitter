@@ -13,8 +13,16 @@ import org.hibernate.criterion.Restrictions;
 import com.twitter.model.AccountDetails;
 import com.twitter.model.Tweet;
 
+/** This class Deletes records from database
+ * @author Deepen Dhamecha
+ *
+ */
 public class DeleteDetailsDAO {
 	
+	/** Deletes AccountDetails and return true if successfully deleted and false if not.
+	 * @param accountDetails AccountDetails but internally deletes by accountId of this class so always set accountId to this object while passing.
+	 * @return flag Returns true if successful and false if not. 
+	 */
 	public boolean deleteAccountDetails(AccountDetails accountDetails){
 		
 		boolean flag = true;
@@ -53,6 +61,10 @@ public class DeleteDetailsDAO {
 		return flag;
 	}
 	
+	/** Deletes All Tweets and return true if successfully deleted and false if not.
+	 * @param accountId Deletes all Tweets of a user using accountId 
+	 * @return flag Returns true if successful and false if not. 
+	 */
 	public boolean deleteAllTweets(Integer accountId){
 		boolean flag;
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
@@ -83,6 +95,10 @@ public class DeleteDetailsDAO {
 		return flag;
 	}
 	
+	/** Deletes Tweet and return true if successfully deleted and false if not.
+	 * @param tweet Tweet but internally deletes by tweetId of this class so always set tweetId to this object while passing.
+	 * @return flag Returns true if successful and false if not. 
+	 */
 	public boolean deleteTweet(Tweet tweet){
 		
 		boolean flag = false;

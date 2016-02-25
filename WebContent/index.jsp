@@ -10,6 +10,8 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	
+	
+	
 	<script>
 	function validateSignInForm() {
 
@@ -89,6 +91,7 @@
 	        reader.readAsDataURL(input.files[0]);
 	    }
 	}*/
+	
 	$(document).ready(function(){
 		$("#signupbtn").click(
 		function(){
@@ -111,6 +114,7 @@
 		$("#view").slideUp('slow');
 		$("#view").load('app/signup/signupView.jsp').hide();
 		$("#view").slideDown('slow');
+		
 	}
 
 	window.setTimeout(function() {
@@ -118,7 +122,7 @@
 		    $(this).remove(); 
 		  });
 		}, 3000);
-
+	
 	</script>
 </head>
 <body class="container" onload="loadSignUpPage();">

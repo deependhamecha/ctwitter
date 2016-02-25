@@ -15,8 +15,17 @@ import org.hibernate.criterion.Restrictions;
 import com.twitter.model.AccountDetails;
 import com.twitter.model.Tweet;
 
+
+/** This class gets Details of User and Tweets from database using Hibernate Query Language & its methods.
+ * @author Deepen Dhamecha
+ *
+ */
 public class GetDetailsDAO {
 
+	
+	/** This method gets List of all Tweets
+	 * @return List<Tweet> List of Tweet object.
+	 */
 	public List<Tweet> getAllTweets(){
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
 		Session session = sessionFactory.openSession();
@@ -40,6 +49,10 @@ public class GetDetailsDAO {
 		return tweetList;
 	}
 	
+	/** This method checks whether Username Exist or not
+	 * @param AccountDetails AccountDetails object.
+	 * @return boolean Returns true if Username exist and false if doesnt exist.
+	 */
 	public boolean isUsernameExist(AccountDetails accountDetails){
 		boolean flag = false;
 		
@@ -67,6 +80,10 @@ public class GetDetailsDAO {
 		return flag;
 	}
 	
+	/** This method gets List of all Tweets of a particular user
+	 * @param Integer Pass accountId of AccountDetails 
+	 * @return List<Tweet> List of Tweet object.
+	 */
 	public List<Tweet> getUserTweets(Integer accountId){
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
 		Session session = sessionFactory.openSession();
@@ -88,7 +105,10 @@ public class GetDetailsDAO {
 		return tweetList;
 	}
 	
-	
+	/** Returns single Tweet by tweetId
+	 * @param Integer Pass unique tweetId 
+	 * @return Tweet Returns single Tweet object.
+	 */
 	public Tweet getTweet(Integer tweetId){
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
 		Session session = sessionFactory.openSession();
@@ -107,6 +127,10 @@ public class GetDetailsDAO {
 		return tweet;
 	}
 	
+	/** This method gets AccountDetails of a particular user referred by accountId
+	 * @param Integer Pass unique accountId
+	 * @return AccountDetails .
+	 */
 	public AccountDetails getAccountDetails(Integer accountId){
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
 		Session session = sessionFactory.openSession();
@@ -125,34 +149,37 @@ public class GetDetailsDAO {
 		return accountDetails;
 	}
 	
-/*	public Integer getAccountIdOfTweetId(Integer tweetId){
-		
+	/** This method gets AccountDetails of a particular user referred by username
+	 * @param username Pass unique username
+	 * @return AccountDetails
+	 */
+	public AccountDetails getAccountDetails(String username){
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		Tweet tweet = null;
-		String username = null;
+		AccountDetails accountDetails = null;
 		
 		try{
-			if(tweetId != null && session.get(Tweet.class, tweetId) != null){
-				tweet = (Tweet) session.get(Tweet.class,tweetId);
-				session.getTransaction().commit();
-				
-				if(tweet.getUsername() != null){
-					username = tweet.getUsername();
-				}
-			}
-		}catch(Exception e){
+		if(username != null){
+			accountDetails = ((AccountDetails)session.createQuery("from AccountDetails where username=\'"+username+"\'").uniqueResult());
+			session.getTransaction().commit();
 			
+		}
+		}catch(Exception e){
+			e.printStackTrace();
 		}finally{
 			session.close();
 			sessionFactory.close();
+			
 		}
-		
-		return accountId;
+		return accountDetails;
 	}
-	*/
+
+	/** This method returns no of Tweets of a particular user
+	 * @param Integer accountId of a user AccountDetails
+	 * @return int Returns no of Tweets of a user
+	 */
 	public int getNoOfUserTweets(Integer accountId){
 	
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
@@ -176,6 +203,9 @@ public class GetDetailsDAO {
 		return count;
 	}
 	
+	/** This method returns total no of Tweets
+	 * @return int Returns no of Tweets
+	 */
 	public int getTotalNoOfTweets(){
 		
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
@@ -198,6 +228,9 @@ public class GetDetailsDAO {
 		return count;
 	}
 	
+	/** This method returns total no of AccountDetails
+	 * @return int Returns no of AccountDetails
+	 */
 	public int getTotalNoOfAccountDetails(){
 		
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
@@ -220,6 +253,9 @@ public class GetDetailsDAO {
 		return count;
 	}
 	
+	/** This method returns last tweetId inserted
+	 * @return int Returns tweetId as int type
+	 */
 	public int getLastTweetId(){
 		
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
@@ -228,9 +264,10 @@ public class GetDetailsDAO {
 		int tweetId = 0;
 		
 		try{
-			tweetId = ((Integer)session.createQuery("SELECT max(tweetId) FROM Tweet").uniqueResult()).intValue();;
-			session.getTransaction().commit();
-			
+			if(this.getTotalNoOfTweets() > 0){
+				tweetId = (session.createQuery("SELECT max(tweetId) FROM Tweet")) != null ? ((Integer)session.createQuery("SELECT max(tweetId) FROM Tweet").uniqueResult()).intValue(): 0;
+				session.getTransaction().commit();
+			}
 		}catch(Exception e){
 			transaction.rollback();
 			e.printStackTrace();
@@ -242,6 +279,11 @@ public class GetDetailsDAO {
 		return tweetId;
 	}
 	
+	/** This method checks username and password returns Integer > 0 if it matches username and password, it returns true else -1
+	 * @param String Username
+	 * @param String Password 
+	 * @return Integer If it Returns < 0 if not present, -1 if exception occurres, and > 1 if username and password matches with database records.
+	 */
 	public Integer checkCredentials(String username, String password){
 		SessionFactory 	sessionFactory = new Configuration().configure().buildSessionFactory(); 
 		Session session = sessionFactory.openSession();
