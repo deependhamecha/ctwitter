@@ -29,5 +29,6 @@ First of all welcome to Ctwitter application, which is nothing but a twitter clo
 
 * Clone the repository & open it in one of the Eclipse Workspace.
 
-* 
+* [Add Apache Tomcat Server to Eclipse but remember to Select Apache Tomcat 8.0](https://www.eclipse.org/webtools/jst/components/ws/1.0M9/tutorials/InstallTomcat.html)
+
 * Press 'Ctrl'+'Shift'+'R', type 'hibernate.cfg.xml' and open it. Go to line number 27.
