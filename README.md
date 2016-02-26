@@ -18,7 +18,7 @@ First of all, Welcome to Ctwitter application, which is a Twitter clone applicat
 ### If all above files are available then lets get started. ###
 
 * Install XAMPP
- Then start 'Apache' and 'MySQL' (Note: Your MySQl port should be configured at 3306). Open your favourite browser and type 'http://localhost/phpmyadmin' (If you have configured before then login with root privileges). Then Select 'Databases' and Create Database with name 'twitterdb'.
+ Then start 'Apache' and 'MySQL' (Note: Your MySQL port should be configured at 3306). Open your favourite browser and type 'http://localhost/phpmyadmin' (If you have configured before then login with root privileges). Then Select 'Databases' and Create Database with name 'twitterdb'.
 
 * Install JDK 8.
 
