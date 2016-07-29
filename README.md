@@ -13,8 +13,6 @@ First of all, Welcome to Ctwitter application, which is a Twitter clone applicat
 
 ![ArchofCtwitter.jpg](https://bitbucket.org/repo/8GnbyA/images/2025643578-ArchofCtwitter.jpg)
 
-[Full View](https://bitbucket.org/repo/8GnbyA/images/2025643578-ArchofCtwitter.jpg)
-
 ### If all above files are available then lets get started. ###
 
 * Install XAMPP
